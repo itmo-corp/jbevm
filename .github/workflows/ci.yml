@@ -1,0 +1,98 @@
+name: CI
+on:
+  push:
+  pull_request:
+    branches: [master]
+
+jobs:
+  # Run Gradle Wrapper Validation Action to verify the wrapper's checksum
+  gradleValidation:
+    name: Gradle Wrapper
+    runs-on: ubuntu-latest
+    steps:
+      # Check out current repository
+      - name: Fetch Sources
+        uses: actions/checkout@v2
+
+      # Validate wrapper
+      - name: Gradle Wrapper Validation
+        uses: gradle/wrapper-validation-action@v1
+
+  linters:
+    name: Linters
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        java-version: [11, 14, 17]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: ${{ matrix.java-version }}
+          distribution: 'adopt'
+          cache: gradle
+
+      - name: Install dependencies
+        run: gradle build
+
+      - name: Run linters and security checks
+        run: bin/quality
+
+  tests:
+    name: Tests
+    needs: gradleValidation
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        java-version: [11, 14, 17]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Configure sysctl limits
+        run: |
+          sudo swapoff -a
+          sudo sysctl -w vm.swappiness=1
+          sudo sysctl -w fs.file-max=262144
+          sudo sysctl -w vm.max_map_count=262144
+
+      - name: Setup JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: ${{ matrix.java-version }}
+          distribution: 'adopt'
+          cache: gradle
+
+      # Cache Gradle dependencies
+      - name: Setup Gradle Dependencies Cache
+        uses: actions/cache@v2
+        with:
+          path: .gradle/caches
+          key: ${{ runner.os }}-gradle-caches-${{ hashFiles('**/*.gradle', '**/*.gradle.kts') }}
+
+      # Cache Gradle Wrapper
+      - name: Setup Gradle Wrapper Cache
+        uses: actions/cache@v2
+        with:
+          path: .gradle/wrapper
+          key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
+
+      - name: Build
+        run: ./gradlew clean build
+
+      - name: Run tests
+        run: bin/tests
+
+      - name: codecov
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: true
