@@ -1,0 +1,8 @@
+# See https://git-scm.com/docs/gitattributes for more about git attribute files.
+
+# Mark the database schema as having been generated.
+gradle/wrapper/gradle-wrapper.jar linguist-generated
+gradle/wrapper/gradle-wrapper.properties linguist-generated
+
+# Mark any vendored files as having been vendored.
+vendor/* linguist-vendored
