@@ -1,0 +1,8 @@
+lank_issues_enabled: false
+contact_links:
+  - name: Feature Request
+    url: https://github.com/itmo-corp/jbevm/discussions
+    about: Visit our GitHub Discussions page to suggest an idea to make JBevm better.
+  - name: JBevm Questions and Discussions
+    url: https://vk.com/jbevm
+    about: Please ask and answer questions, discuss features, or reach out for help on vk.com/jbevm
