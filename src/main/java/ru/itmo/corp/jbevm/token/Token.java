@@ -1,23 +1,25 @@
 package ru.itmo.corp.jbevm.token;
 
+import ru.itmo.corp.jbevm.utils.Position;
+
 public class Token {
   public final TokenType type;
   public String lexeme;
   public Object literal;
-  public final int line;
+  public Position pos;
 
-  public Token(TokenType type, String lexeme, int line) {
+  public Token(TokenType type, String lexeme, Position pos) {
     this.type = type;
     this.lexeme = lexeme;
     this.literal = null;
-    this.line = line;
+    this.pos = pos;
   }
 
-  public Token(TokenType type, String lexeme, Object literal, int line) {
+  public Token(TokenType type, String lexeme, Object literal, Position pos) {
     this.type = type;
     this.lexeme = lexeme;
     this.literal = literal;
-    this.line = line;
+    this.pos = pos;
   }
 
   public void concat(Token token) {
