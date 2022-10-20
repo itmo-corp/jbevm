@@ -5,6 +5,7 @@ import java.util.*;
 import ru.itmo.corp.jbevm.token.Token;
 import ru.itmo.corp.jbevm.token.TokenType;
 
+import ru.itmo.corp.jbevm.utils.Position;
 import ru.itmo.corp.jbevm.utils.Reporter;
 import ru.itmo.corp.jbevm.utils.TokenHelper;
 
@@ -17,6 +18,7 @@ public class Lexer {
   private int start = 0;
   private int current = 0;
   private int line = 1;
+  private int currentLineChar = 0;
 
   public Lexer(String source) {
     this.source = source;
@@ -27,7 +29,7 @@ public class Lexer {
       start = current;
       scanToken();
     }
-    tokens.add(new Token(EOF, "", null, line));
+    tokens.add(new Token(EOF, "", null, currentPosition()));
     return tokens;
   }
 
@@ -103,6 +105,7 @@ public class Lexer {
         break;
       case '\n':
         line++;
+        currentLineChar = 0;
         break;
       case '"':
         scanString();
@@ -116,7 +119,7 @@ public class Lexer {
         } else if (TokenHelper.isAlpha(c)) {
           scanIdentifier();
         } else {
-          Reporter.error(line, "Unexpected character.");
+          Reporter.error(currentPosition(), "Unexpected character.");
         }
     }
   }
@@ -153,7 +156,7 @@ public class Lexer {
 
     // Unterminated scanString
     if (isAtEnd()) {
-      Reporter.error(line, "Unterminated string variable.");
+      Reporter.error(currentPosition(), "Unterminated string variable.");
       return;
     }
 
@@ -169,7 +172,7 @@ public class Lexer {
     String value = source.substring(start + 1, start + 2);
     pointToNextChar();
     if (getCurrentChar() != '\'') {
-      Reporter.error(line, "Unterminated char variable.");
+      Reporter.error(currentPosition(), "Unterminated char variable.");
       return;
     }
     pointToNextChar();
@@ -190,6 +193,7 @@ public class Lexer {
 
   private char pointToNextChar() {
     current++;
+    currentLineChar++;
     return source.charAt(current - 1);
   }
 
@@ -199,7 +203,7 @@ public class Lexer {
 
   private void addToken(TokenType type, Object literal) {
     String text = source.substring(start, current);
-    tokens.add(new Token(type, text, literal, line));
+    tokens.add(new Token(type, text, literal, currentPosition()));
   }
 
   private boolean isAtEnd() {
@@ -211,6 +215,7 @@ public class Lexer {
     if (source.charAt(current) != expected) return false;
 
     current++;
+    currentLineChar++;
     return true;
   }
 
@@ -224,5 +229,9 @@ public class Lexer {
     if (current + 1 >= source.length()) return '\0';
 
     return source.charAt(current + 1);
+  }
+
+  private Position currentPosition() {
+    return new Position(this.line, this.currentLineChar);
   }
 }

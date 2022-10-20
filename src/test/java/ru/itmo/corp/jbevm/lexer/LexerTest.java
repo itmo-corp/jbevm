@@ -1,6 +1,7 @@
 package ru.itmo.corp.jbevm.lexer;
 
 import org.junit.jupiter.api.Test;
+import ru.itmo.corp.jbevm.exceptions.LexicalException;
 import ru.itmo.corp.jbevm.token.Token;
 
 import java.io.*;
@@ -9,6 +10,7 @@ import java.util.List;
 import static ru.itmo.corp.jbevm.token.TokenType.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class LexerTest {
   @Test
@@ -57,28 +59,28 @@ public class LexerTest {
 
   @Test
   public void testUnexpectedCharacters() {
-    ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    System.setErr(new PrintStream(outContent));
-
-    (new Lexer("π")).scanTokens();
-    assertEquals("[line 1] Error: Unexpected character.\n", outContent.toString());
+    LexicalException thrown = assertThrows(
+        LexicalException.class,
+        () ->  (new Lexer("π")).scanTokens(),
+        "[1:1] Error: Unexpected character.\n"
+    );
   }
 
   @Test
   public void testUnterminatedStringVariable() {
-    ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    System.setErr(new PrintStream(outContent));
-
-    (new Lexer("\"im'a string")).scanTokens();
-    assertEquals("[line 1] Error: Unterminated string variable.\n", outContent.toString());
+    LexicalException thrown = assertThrows(
+        LexicalException.class,
+        () ->  (new Lexer("\"im'a string")).scanTokens(),
+        "[1:12] Error: Unterminated string variable.\n"
+    );
   }
 
   @Test
   public void testUnterminatedCharVariable() {
-    ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    System.setErr(new PrintStream(outContent));
-
-    (new Lexer("\"this is string\"\n'a")).scanTokens();
-    assertEquals("[line 2] Error: Unterminated char variable.\n", outContent.toString());
+    LexicalException thrown = assertThrows(
+        LexicalException.class,
+        () ->  (new Lexer("\"this is string\"\n'a")).scanTokens(),
+        "[2:2] Error: Unterminated char variable.\n"
+    );
   }
 }
