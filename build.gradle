@@ -3,6 +3,7 @@ plugins {
     id 'application'
     id 'jacoco'
     id 'checkstyle'
+    id 'antlr'
 }
 
 group 'ru.itmo.corp.jbevm'
@@ -13,6 +14,12 @@ targetCompatibility = 11
 
 application {
     mainClass = 'ru.itmo.corp.jbevm.Main'
+}
+
+configurations {
+  compile {
+    extendsFrom = extendsFrom.findAll { it != configurations.antlr }
+  }
 }
 
 // Create a single .jar with all dependencies
@@ -26,6 +33,10 @@ tasks.register('uberJar', Jar) {
     }
 }
 
+generateGrammarSource {
+    outputDirectory = new File("src/main/java/ru/itmo/corp/jbevm/antlr")
+}
+
 repositories {
     mavenCentral()
 }
@@ -33,6 +44,22 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+    antlr "org.antlr:antlr4:4.10.1"
+    compile "org.antlr:antlr4-runtime:4.10.1"
+}
+
+generateGrammarSource {
+    maxHeapSize = "128m"
+
+    // Keep a copy of generated sources
+    doLast {
+        println "Copying generated grammar lexer/parser files to main directory."
+        copy {
+            from "${buildDir}/generated-src/antlr/main"
+            into "generated-src/main/java"
+        }
+    }
 }
 
 checkstyle {
@@ -40,11 +67,14 @@ checkstyle {
     maxWarnings = 0
     configFile = file("${rootDir}/config/checkstyle/checkstyle.xml")
 }
+
 checkstyleMain {
-    source ='src/main/java'
+    source 'src/main/java'
+    exclude '**/antlr/**'
 }
+
 checkstyleTest {
-    source ='src/test/java'
+    source 'src/test/java'
 }
 
 jacoco {
@@ -64,4 +94,8 @@ jacocoTestReport {
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
+}
+
+clean.doLast {
+    file('generated-src').deleteDir()
 }
