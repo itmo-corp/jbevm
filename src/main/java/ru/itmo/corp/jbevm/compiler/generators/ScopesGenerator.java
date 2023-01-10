@@ -2,7 +2,7 @@ package ru.itmo.corp.jbevm.compiler.generators;
 
 import ru.itmo.corp.jbevm.compiler.scopes.Scope;
 import ru.itmo.corp.jbevm.compiler.scopes.ScopeItem;
-import ru.itmo.corp.jbevm.compiler.syntaxTree.JNode;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.JNode;
 
 public class ScopesGenerator {
   public static void generate(JNode node, Scope parentScope) {

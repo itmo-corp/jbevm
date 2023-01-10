@@ -1,6 +1,6 @@
-package ru.itmo.corp.jbevm.compiler.syntaxTree;
+package ru.itmo.corp.jbevm.compiler.syntax_tree;
 
-import ru.itmo.corp.jbevm.compiler.dataContainers.Variable;
+import ru.itmo.corp.jbevm.compiler.data_containers.Variable;
 import ru.itmo.corp.jbevm.compiler.types.JType;
 
 public abstract class VariableJNode extends NamedJNode {

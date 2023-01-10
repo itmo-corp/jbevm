@@ -1,6 +1,6 @@
 package ru.itmo.corp.jbevm.compiler.basm;
 
-import ru.itmo.corp.jbevm.compiler.dataContainers.Variable;
+import ru.itmo.corp.jbevm.compiler.data_containers.Variable;
 
 public class SimpleVariableBasmLine extends BasmLine {
   private String basm;

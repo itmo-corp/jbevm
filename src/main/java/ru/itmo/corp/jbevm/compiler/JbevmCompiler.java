@@ -11,7 +11,7 @@ import ru.itmo.corp.jbevm.antlr.JbevmParser;
 import ru.itmo.corp.jbevm.compiler.basm.BasmProgram;
 import ru.itmo.corp.jbevm.compiler.generators.ScopesGenerator;
 import ru.itmo.corp.jbevm.compiler.generators.VariableExpressionGenerator;
-import ru.itmo.corp.jbevm.compiler.syntaxTree.RootJNode;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.RootJNode;
 
 public class JbevmCompiler {
   public String compile(String source) {

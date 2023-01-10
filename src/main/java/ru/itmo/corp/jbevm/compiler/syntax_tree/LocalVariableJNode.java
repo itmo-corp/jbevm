@@ -1,4 +1,4 @@
-package ru.itmo.corp.jbevm.compiler.syntaxTree;
+package ru.itmo.corp.jbevm.compiler.syntax_tree;
 
 import java.util.Collections;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
 import ru.itmo.corp.jbevm.compiler.scopes.ScopeItem;
-import ru.itmo.corp.jbevm.compiler.syntaxTree.expressions.ExpressionJNode;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.expressions.ExpressionJNode;
 
 public class LocalVariableJNode extends VariableJNode implements ScopeItem {
   private @Nullable ExpressionJNode value;

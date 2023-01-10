@@ -5,16 +5,16 @@ import java.util.List;
 import java.util.Stack;
 
 import ru.itmo.corp.jbevm.antlr.JbevmParserBaseListener;
-import ru.itmo.corp.jbevm.compiler.syntaxTree.ClassJNode;
-import ru.itmo.corp.jbevm.compiler.syntaxTree.JNode;
-import ru.itmo.corp.jbevm.compiler.syntaxTree.LocalVariableJNode;
-import ru.itmo.corp.jbevm.compiler.syntaxTree.MethodArgumentJNode;
-import ru.itmo.corp.jbevm.compiler.syntaxTree.MethodJNode;
-import ru.itmo.corp.jbevm.compiler.syntaxTree.NewVariableScopeJNode;
-import ru.itmo.corp.jbevm.compiler.syntaxTree.RootJNode;
-import ru.itmo.corp.jbevm.compiler.syntaxTree.ScopedCodeJNode;
-import ru.itmo.corp.jbevm.compiler.syntaxTreeFactories.ExpressionFacroty;
-import ru.itmo.corp.jbevm.compiler.syntaxTreeFactories.TypeFactory;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.ClassJNode;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.JNode;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.LocalVariableJNode;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.MethodArgumentJNode;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.MethodJNode;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.NewVariableScopeJNode;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.RootJNode;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.ScopedCodeJNode;
+import ru.itmo.corp.jbevm.compiler.syntax_tree_factories.ExpressionFacroty;
+import ru.itmo.corp.jbevm.compiler.syntax_tree_factories.TypeFactory;
 import ru.itmo.corp.jbevm.compiler.types.JType;
 
 public class SyntaxTreeListener extends JbevmParserBaseListener {

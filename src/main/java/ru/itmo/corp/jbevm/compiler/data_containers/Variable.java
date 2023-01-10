@@ -1,4 +1,4 @@
-package ru.itmo.corp.jbevm.compiler.dataContainers;
+package ru.itmo.corp.jbevm.compiler.data_containers;
 
 import ru.itmo.corp.jbevm.compiler.types.JType;
 

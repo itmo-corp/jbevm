@@ -1,11 +1,11 @@
-package ru.itmo.corp.jbevm.compiler.syntaxTreeFactories;
+package ru.itmo.corp.jbevm.compiler.syntax_tree_factories;
 
-import ru.itmo.corp.jbevm.compiler.syntaxTree.JNode;
-import ru.itmo.corp.jbevm.compiler.syntaxTree.expressions.AddOperatorExpressionJNode;
-import ru.itmo.corp.jbevm.compiler.syntaxTree.expressions.AssignExpressionJNode;
-import ru.itmo.corp.jbevm.compiler.syntaxTree.expressions.IntLiteralExpressionJNode;
-import ru.itmo.corp.jbevm.compiler.syntaxTree.expressions.UnresolvedIdentifierExpressionJNode;
-import ru.itmo.corp.jbevm.compiler.syntaxTree.expressions.UnresolvedLiteralExpressionJNode;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.JNode;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.expressions.AddOperatorExpressionJNode;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.expressions.AssignExpressionJNode;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.expressions.IntLiteralExpressionJNode;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.expressions.UnresolvedIdentifierExpressionJNode;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.expressions.UnresolvedLiteralExpressionJNode;
 
 public class ExpressionFacroty {
   public static JNode createExpression(ru.itmo.corp.jbevm.antlr.JbevmParser.ExpressionContext ctx) {

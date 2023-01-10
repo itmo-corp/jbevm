@@ -9,16 +9,16 @@ import ru.itmo.corp.jbevm.compiler.basm.BasmProgram;
 import ru.itmo.corp.jbevm.compiler.basm.OneWordBasmStaticVariable;
 import ru.itmo.corp.jbevm.compiler.basm.SimpleBasmLine;
 import ru.itmo.corp.jbevm.compiler.basm.SimpleVariableBasmLine;
-import ru.itmo.corp.jbevm.compiler.syntaxTree.ClassJNode;
-import ru.itmo.corp.jbevm.compiler.syntaxTree.JNode;
-import ru.itmo.corp.jbevm.compiler.syntaxTree.LocalVariableJNode;
-import ru.itmo.corp.jbevm.compiler.syntaxTree.MethodJNode;
-import ru.itmo.corp.jbevm.compiler.syntaxTree.RootJNode;
-import ru.itmo.corp.jbevm.compiler.syntaxTree.ScopedCodeJNode;
-import ru.itmo.corp.jbevm.compiler.syntaxTree.expressions.AddOperatorExpressionJNode;
-import ru.itmo.corp.jbevm.compiler.syntaxTree.expressions.AssignExpressionJNode;
-import ru.itmo.corp.jbevm.compiler.syntaxTree.expressions.IntLiteralExpressionJNode;
-import ru.itmo.corp.jbevm.compiler.syntaxTree.expressions.VariableIdentifierExpressionJNode;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.ClassJNode;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.JNode;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.LocalVariableJNode;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.MethodJNode;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.RootJNode;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.ScopedCodeJNode;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.expressions.AddOperatorExpressionJNode;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.expressions.AssignExpressionJNode;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.expressions.IntLiteralExpressionJNode;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.expressions.VariableIdentifierExpressionJNode;
 import ru.itmo.corp.jbevm.compiler.types.IntJType;
 
 public class BasmProgramBuilder {

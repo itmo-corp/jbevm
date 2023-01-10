@@ -1,8 +1,8 @@
-package ru.itmo.corp.jbevm.compiler.syntaxTree.expressions;
+package ru.itmo.corp.jbevm.compiler.syntax_tree.expressions;
 
 import java.util.List;
 
-import ru.itmo.corp.jbevm.compiler.syntaxTree.JNode;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.JNode;
 import ru.itmo.corp.jbevm.compiler.types.JType;
 
 public class AssignExpressionJNode extends ExpressionJNode {

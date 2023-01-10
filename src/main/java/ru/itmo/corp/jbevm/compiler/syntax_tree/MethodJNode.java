@@ -1,4 +1,4 @@
-package ru.itmo.corp.jbevm.compiler.syntaxTree;
+package ru.itmo.corp.jbevm.compiler.syntax_tree;
 
 import java.util.ArrayList;
 import java.util.List;

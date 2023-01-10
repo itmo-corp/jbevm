@@ -1,4 +1,4 @@
-package ru.itmo.corp.jbevm.compiler.syntaxTreeFactories;
+package ru.itmo.corp.jbevm.compiler.syntax_tree_factories;
 
 import ru.itmo.corp.jbevm.compiler.types.IntJType;
 import ru.itmo.corp.jbevm.compiler.types.JType;

@@ -2,8 +2,8 @@ package ru.itmo.corp.jbevm.compiler.scopes;
 
 import org.jetbrains.annotations.Nullable;
 
-import ru.itmo.corp.jbevm.compiler.dataContainers.Variable;
-import ru.itmo.corp.jbevm.compiler.syntaxTree.VariableJNode;
+import ru.itmo.corp.jbevm.compiler.data_containers.Variable;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.VariableJNode;
 
 import java.util.Dictionary;
 import java.util.Hashtable;
