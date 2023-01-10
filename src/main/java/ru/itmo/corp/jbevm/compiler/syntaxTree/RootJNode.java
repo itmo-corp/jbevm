@@ -19,4 +19,8 @@ public class RootJNode extends JNode {
   public List<JNode> getChildren() {
     return new ArrayList<>(classes);
   }
+
+  public List<ClassJNode> getClasses() {
+    return classes;
+  }
 }

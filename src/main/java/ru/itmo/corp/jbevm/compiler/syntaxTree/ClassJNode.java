@@ -26,4 +26,8 @@ public class ClassJNode extends NamedJNode implements ScopeItemsContainer {
   public List<JNode> getChildren() {
     return new ArrayList<>(methods);
   }
+
+  public List<MethodJNode> getMethods() {
+    return methods;
+  }
 }

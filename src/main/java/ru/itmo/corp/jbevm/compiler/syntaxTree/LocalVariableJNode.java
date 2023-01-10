@@ -7,15 +7,9 @@ import org.jetbrains.annotations.Nullable;
 
 import ru.itmo.corp.jbevm.compiler.scopes.ScopeItem;
 import ru.itmo.corp.jbevm.compiler.syntaxTree.expressions.ExpressionJNode;
-import ru.itmo.corp.jbevm.compiler.types.JType;
 
-public class LocalVariableJNode extends NamedJNode implements ScopeItem {
-  protected JType type;
-  protected @Nullable ExpressionJNode value;
-
-  public void setType(JType type) {
-    this.type = type;
-  }
+public class LocalVariableJNode extends VariableJNode implements ScopeItem {
+  private @Nullable ExpressionJNode value;
 
   @Override
   public void addChild(JNode child) {
@@ -29,5 +23,14 @@ public class LocalVariableJNode extends NamedJNode implements ScopeItem {
   @Override
   public List<JNode> getChildren() {
     return value == null ? Collections.emptyList() : Collections.singletonList(value);
+  }
+
+  @Override
+  public void replaceChild(JNode oldChild, JNode newChild) {
+    if (value == oldChild) {
+      value = (ExpressionJNode) newChild;
+    } else {
+      throw new IllegalArgumentException("Not found child to replace");
+    }
   }
 }

@@ -8,7 +8,9 @@ import org.antlr.v4.runtime.CharStreams;
 
 import ru.itmo.corp.jbevm.antlr.JbevmLexer;
 import ru.itmo.corp.jbevm.antlr.JbevmParser;
+import ru.itmo.corp.jbevm.compiler.basm.BasmProgram;
 import ru.itmo.corp.jbevm.compiler.generators.ScopesGenerator;
+import ru.itmo.corp.jbevm.compiler.generators.VariableExpressionGenerator;
 import ru.itmo.corp.jbevm.compiler.syntaxTree.RootJNode;
 
 public class JbevmCompiler {
@@ -19,7 +21,6 @@ public class JbevmCompiler {
 
     var syntaxTreeListener = new SyntaxTreeListener();
 
-    // parser.addParseListener(syntaxTreeListener);
     ParseTree tree = parser.program();
 
     ParseTreeWalker walker = new ParseTreeWalker();
@@ -29,6 +30,12 @@ public class JbevmCompiler {
 
     ScopesGenerator.generate(root, null);
 
-    return "stub";
+    VariableExpressionGenerator.generate(root);
+
+    BasmProgramBuilder builder = new BasmProgramBuilder();
+    builder.setEntryClassName("Main");
+    BasmProgram program = builder.build(root);
+
+    return program.toBasm();
   }
 }

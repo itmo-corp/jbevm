@@ -16,6 +16,14 @@ public abstract class JNode {
     return Collections.emptyList();
   }
 
+  public void removeChild(JNode child) {
+    throw new UnsupportedOperationException();
+  }
+
+  public void replaceChild(JNode oldChild, JNode newChild) {
+    throw new UnsupportedOperationException();
+  }
+
   public Scope getScope() {
     return scope;
   }

@@ -13,7 +13,7 @@ public class ScopesGenerator {
   }
 
   public static void regenerateOne(JNode node, Scope parentScope) {
-    node.newScope().setParentScope(parentScope);
+    node.newScope().setParent(parentScope);
     generateOne(node);
   }
 
@@ -23,7 +23,7 @@ public class ScopesGenerator {
       if (child instanceof ScopeItem) {
         scope.add((ScopeItem) child);
       }
-      child.getScope().setParentScope(scope);
+      child.getScope().setParent(scope);
     }
   }
 }

@@ -13,9 +13,9 @@ import ru.itmo.corp.jbevm.compiler.syntaxTree.MethodJNode;
 import ru.itmo.corp.jbevm.compiler.syntaxTree.NewVariableScopeJNode;
 import ru.itmo.corp.jbevm.compiler.syntaxTree.RootJNode;
 import ru.itmo.corp.jbevm.compiler.syntaxTree.ScopedCodeJNode;
-import ru.itmo.corp.jbevm.compiler.syntaxTree.expressions.ExpressionJNode;
+import ru.itmo.corp.jbevm.compiler.syntaxTreeFactories.ExpressionFacroty;
+import ru.itmo.corp.jbevm.compiler.syntaxTreeFactories.TypeFactory;
 import ru.itmo.corp.jbevm.compiler.types.JType;
-import ru.itmo.corp.jbevm.compiler.types.UnresolvedJType;
 
 public class SyntaxTreeListener extends JbevmParserBaseListener {
   private final RootJNode root = new RootJNode();
@@ -64,7 +64,7 @@ public class SyntaxTreeListener extends JbevmParserBaseListener {
   @Override
   public void exitMethodDeclaration(ru.itmo.corp.jbevm.antlr.JbevmParser.MethodDeclarationContext ctx) {
     String name = ctx.identifier().getText();
-    UnresolvedJType returnType = new UnresolvedJType(ctx.typeTypeOrVoid().getText());
+    JType returnType = TypeFactory.createTypeOrVoid(ctx.typeTypeOrVoid());
     MethodJNode methodJNode = (MethodJNode) current();
     methodJNode.setName(name);
     methodJNode.setReturnType(returnType);
@@ -88,7 +88,7 @@ public class SyntaxTreeListener extends JbevmParserBaseListener {
   @Override
   public void exitFormalParameter(ru.itmo.corp.jbevm.antlr.JbevmParser.FormalParameterContext ctx) {
     String name = ctx.variableDeclaratorId().getText();
-    UnresolvedJType type = new UnresolvedJType(ctx.typeType().getText());
+    JType type = TypeFactory.createType(ctx.typeType());
     MethodArgumentJNode methodArgumentJNode = new MethodArgumentJNode();
     methodArgumentJNode.setName(name);
     methodArgumentJNode.setType(type);
@@ -124,7 +124,7 @@ public class SyntaxTreeListener extends JbevmParserBaseListener {
   
   @Override
   public void exitLocalVariableDeclaration(ru.itmo.corp.jbevm.antlr.JbevmParser.LocalVariableDeclarationContext ctx) {
-    UnresolvedJType type = new UnresolvedJType(ctx.typeType().getText());
+    JType type = TypeFactory.createType(ctx.typeType());
     LocalVariablesInremideate localVariablesInremideate = (LocalVariablesInremideate) stack.pop();
     localVariablesInremideate.setType(type);
     for (LocalVariableJNode localVariable : localVariablesInremideate.getLocalVariables()) {
@@ -151,7 +151,7 @@ public class SyntaxTreeListener extends JbevmParserBaseListener {
     stack.pop();
   }
 
-  public class ExpressionIntermidiate extends ExpressionJNode {
+  public class ExpressionIntermidiate extends JNode {
     private List<JNode> children = new ArrayList<>();
 
     @Override
