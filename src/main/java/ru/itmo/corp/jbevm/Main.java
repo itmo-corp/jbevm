@@ -7,22 +7,27 @@ import org.antlr.v4.runtime.tree.ParseTree;
 
 import ru.itmo.corp.jbevm.antlr.JbevmLexer;
 import ru.itmo.corp.jbevm.antlr.JbevmParser;
+import ru.itmo.corp.jbevm.compiler.JbevmCompiler;
 
 import java.io.IOException;
 import java.util.Arrays;
 
 public class Main {
   public static void main(String[] args) throws IOException {
-    var source = "class Hello { static float A = 42.10f; int a; Hello(int a) { this.a = a; } }";
+    var source = "class Main { public static void main(int a) { int a = 1; int b = 2; int c = a + b; } }";
 
-    var lexer = new JbevmLexer(CharStreams.fromString(source));
-    var tokenStream = new CommonTokenStream(lexer);
-    var parser = new JbevmParser(tokenStream);
+    var compiler = new JbevmCompiler();
 
-    ParseTree tree = parser.program();
+    System.out.println(compiler.compile(source));
 
-    System.out.println(tree.toStringTree(parser));
+    // var lexer = new JbevmLexer(CharStreams.fromString(source));
+    // var tokenStream = new CommonTokenStream(lexer);
+    // var parser = new JbevmParser(tokenStream);
 
-    (new TreeViewer(Arrays.asList(parser.getRuleNames()), tree)).open();
+    // ParseTree tree = parser.program();
+
+    // System.out.println(tree.toStringTree(parser));
+
+    // (new TreeViewer(Arrays.asList(parser.getRuleNames()), tree)).open();
   }
 }
