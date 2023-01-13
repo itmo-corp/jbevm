@@ -1,5 +1,6 @@
 package ru.itmo.corp.jbevm.compiler.syntax_tree.expressions;
 
+import ru.itmo.corp.jbevm.compiler.syntax_tree.JNodeVisitor;
 import ru.itmo.corp.jbevm.compiler.types.IntJType;
 import ru.itmo.corp.jbevm.compiler.types.JType;
 
@@ -28,5 +29,10 @@ public class IntLiteralExpressionJNode extends ExpressionJNode {
   @Override
   public JType getReturnType() {
     return new IntJType();
+  }
+
+  @Override
+  public void accept(JNodeVisitor visitor) {
+    visitor.visit(this);
   }
 }

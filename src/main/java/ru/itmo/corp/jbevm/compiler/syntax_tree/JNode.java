@@ -8,6 +8,8 @@ import ru.itmo.corp.jbevm.compiler.scopes.Scope;
 public abstract class JNode {
   protected Scope scope;
 
+  public abstract void accept(JNodeVisitor visitor);
+
   public void addChild(JNode child) {
     throw new UnsupportedOperationException(getClass().getName() + " can't have children");
   }

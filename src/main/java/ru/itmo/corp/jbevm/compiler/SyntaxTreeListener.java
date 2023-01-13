@@ -7,6 +7,7 @@ import java.util.Stack;
 import ru.itmo.corp.jbevm.antlr.JbevmParserBaseListener;
 import ru.itmo.corp.jbevm.compiler.syntax_tree.ClassJNode;
 import ru.itmo.corp.jbevm.compiler.syntax_tree.JNode;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.JNodeVisitor;
 import ru.itmo.corp.jbevm.compiler.syntax_tree.LocalVariableJNode;
 import ru.itmo.corp.jbevm.compiler.syntax_tree.MethodArgumentJNode;
 import ru.itmo.corp.jbevm.compiler.syntax_tree.MethodJNode;
@@ -114,6 +115,11 @@ public class SyntaxTreeListener extends JbevmParserBaseListener {
     public List<LocalVariableJNode> getLocalVariables() {
       return localVariables;
     }
+
+    @Override
+    public void accept(JNodeVisitor visitor) {
+      throw new UnsupportedOperationException("LocalVariablesInremideate is not a real node");
+    }
   }
 
   @Override
@@ -162,6 +168,11 @@ public class SyntaxTreeListener extends JbevmParserBaseListener {
     @Override
     public List<JNode> getChildren() {
       return children;
+    }
+
+    @Override
+    public void accept(JNodeVisitor visitor) {
+      throw new UnsupportedOperationException("ExpressionIntermidiate is not a real node");
     }
   }
 

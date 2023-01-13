@@ -45,4 +45,9 @@ public class MethodJNode extends NamedJNode implements ScopeItem {
   public ScopedCodeJNode getBody() {
     return body;
   }
+
+  @Override
+  public void accept(JNodeVisitor visitor) {
+    visitor.visit(this);
+  }
 }

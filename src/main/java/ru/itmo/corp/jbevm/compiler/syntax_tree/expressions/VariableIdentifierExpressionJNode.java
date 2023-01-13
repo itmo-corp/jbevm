@@ -1,6 +1,7 @@
 package ru.itmo.corp.jbevm.compiler.syntax_tree.expressions;
 
 import ru.itmo.corp.jbevm.compiler.data_containers.Variable;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.JNodeVisitor;
 import ru.itmo.corp.jbevm.compiler.types.JType;
 
 public class VariableIdentifierExpressionJNode extends VariableExpressionJNode {
@@ -18,5 +19,10 @@ public class VariableIdentifierExpressionJNode extends VariableExpressionJNode {
   @Override
   public JType getReturnType() {
     return variable.getType();
+  }
+
+  @Override
+  public void accept(JNodeVisitor visitor) {
+    visitor.visit(this);
   }
 }

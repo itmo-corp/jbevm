@@ -1,6 +1,7 @@
 package ru.itmo.corp.jbevm.compiler.syntax_tree.expressions;
 
 import ru.itmo.corp.jbevm.compiler.data_containers.Variable;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.JNodeVisitor;
 import ru.itmo.corp.jbevm.compiler.types.JType;
 
 public class UnresolvedIdentifierExpressionJNode extends VariableExpressionJNode {
@@ -26,5 +27,10 @@ public class UnresolvedIdentifierExpressionJNode extends VariableExpressionJNode
   @Override
   public Variable getVariable() {
     throw new UnsupportedOperationException("Identifier " + name + " is not resolved yet");
+  }
+
+  @Override
+  public void accept(JNodeVisitor visitor) {
+    visitor.visit(this);
   }
 }

@@ -23,4 +23,9 @@ public class RootJNode extends JNode {
   public List<ClassJNode> getClasses() {
     return classes;
   }
+
+  @Override
+  public void accept(JNodeVisitor visitor) {
+    visitor.visit(this);
+  }
 }

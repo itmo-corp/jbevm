@@ -25,4 +25,9 @@ public class ScopedCodeJNode extends StatementJNode {
     children.addAll(statements);
     return children;
   }
+
+  @Override
+  public void accept(JNodeVisitor visitor) {
+    visitor.visit(this);
+  }
 }

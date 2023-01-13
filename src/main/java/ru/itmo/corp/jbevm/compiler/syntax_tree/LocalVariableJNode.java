@@ -33,4 +33,9 @@ public class LocalVariableJNode extends VariableJNode implements ScopeItem {
       throw new IllegalArgumentException("Not found child to replace");
     }
   }
+
+  @Override
+  public void accept(JNodeVisitor visitor) {
+    visitor.visit(this);
+  }
 }

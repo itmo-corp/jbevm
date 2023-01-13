@@ -12,4 +12,9 @@ public class MethodArgumentJNode extends NamedJNode {
   public void setType(JType type) {
     this.type = type;
   }
+
+  @Override
+  public void accept(JNodeVisitor visitor) {
+    visitor.visit(this);
+  }
 }

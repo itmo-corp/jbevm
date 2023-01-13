@@ -30,4 +30,9 @@ public class ClassJNode extends NamedJNode implements ScopeItemsContainer {
   public List<MethodJNode> getMethods() {
     return methods;
   }
+
+  @Override
+  public void accept(JNodeVisitor visitor) {
+    visitor.visit(this);
+  }
 }

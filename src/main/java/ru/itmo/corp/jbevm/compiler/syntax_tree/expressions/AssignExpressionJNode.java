@@ -3,6 +3,7 @@ package ru.itmo.corp.jbevm.compiler.syntax_tree.expressions;
 import java.util.List;
 
 import ru.itmo.corp.jbevm.compiler.syntax_tree.JNode;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.JNodeVisitor;
 import ru.itmo.corp.jbevm.compiler.types.JType;
 
 public class AssignExpressionJNode extends ExpressionJNode {
@@ -56,5 +57,10 @@ public class AssignExpressionJNode extends ExpressionJNode {
 
   public ExpressionJNode getRight() {
     return right;
+  }
+
+  @Override
+  public void accept(JNodeVisitor visitor) {
+    visitor.visit(this);
   }
 }
