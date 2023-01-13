@@ -9,7 +9,7 @@ public abstract class JNode {
   protected Scope scope;
 
   public void addChild(JNode child) {
-    throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException(getClass().getName() + " can't have children");
   }
 
   public List<JNode> getChildren() {
@@ -17,11 +17,11 @@ public abstract class JNode {
   }
 
   public void removeChild(JNode child) {
-    throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException(getClass().getName() + " can't have children");
   }
 
   public void replaceChild(JNode oldChild, JNode newChild) {
-    throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException(getClass().getName() + " can't have children");
   }
 
   public Scope getScope() {

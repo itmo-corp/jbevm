@@ -12,11 +12,14 @@ public class AssignExpressionJNode extends ExpressionJNode {
   @Override
   public void addChild(JNode child) {
     if (!(child instanceof ExpressionJNode)) {
-      throw new IllegalArgumentException("AssignExpressionJNode can have only ExpressionJNode children");
+      throw new IllegalArgumentException(
+          "AssignExpressionJNode can have only ExpressionJNode children, but got " + child.getClass().getName());
     }
     if (left == null) {
       if (!(child instanceof VariableExpressionJNode)) {
-        throw new IllegalArgumentException("AssignExpressionJNode can have only VariableExpressionJNode as left child");
+        throw new IllegalArgumentException(
+            "AssignExpressionJNode can have only VariableExpressionJNode as left child, but got "
+                + child.getClass().getName());
       }
       left = (VariableExpressionJNode) child;
     } else if (right == null) {

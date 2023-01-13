@@ -14,7 +14,7 @@ public class ScopedCodeJNode extends StatementJNode {
     } else if (child instanceof StatementJNode) {
       statements.add((StatementJNode) child);
     } else {
-      throw new IllegalArgumentException("Unexpected child type: " + child.getClass());
+      throw new IllegalArgumentException("Unexpected child type: " + child.getClass().getName());
     }
   }
 

@@ -20,11 +20,11 @@ public class UnresolvedIdentifierExpressionJNode extends VariableExpressionJNode
 
   @Override
   public JType getReturnType() {
-    throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException("Identifier " + name + " is not resolved yet");
   }
 
   @Override
   public Variable getVariable() {
-    throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException("Identifier " + name + " is not resolved yet");
   }
 }

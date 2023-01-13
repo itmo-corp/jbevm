@@ -16,7 +16,7 @@ public class LocalVariableJNode extends VariableJNode implements ScopeItem {
     if (child instanceof ExpressionJNode) {
       value = (ExpressionJNode) child;
     } else {
-      throw new IllegalArgumentException("LocalVariableJNode can have only ExpressionJNode as child");
+      throw new IllegalArgumentException("LocalVariableJNode can have only ExpressionJNode as child, but got " + child.getClass().getName());
     }
   }
 

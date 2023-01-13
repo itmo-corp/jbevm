@@ -19,6 +19,6 @@ public class UnresolvedLiteralExpressionJNode extends ExpressionJNode {
 
   @Override
   public JType getReturnType() {
-    throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException("Literal " + value + " is not resolved yet");
   }
 }

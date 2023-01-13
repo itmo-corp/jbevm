@@ -27,8 +27,7 @@ public class MethodJNode extends NamedJNode implements ScopeItem {
       arguments.add((MethodArgumentJNode) child);
     } else {
       throw new IllegalArgumentException(
-          "MethodJNode can have only ScopedCodeJNode and MethodArgumentJNode as child, but got " + child.getClass()
-              + " instead");
+          "MethodJNode can have only ScopedCodeJNode and MethodArgumentJNode as child, but got " + child.getClass().getName());
     }
   }
 

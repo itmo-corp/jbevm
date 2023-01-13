@@ -16,7 +16,7 @@ public class ExpressionFacroty {
     } else if (ctx.primary() != null) {
       return createPrimaryExpression(ctx.primary());
     } else {
-      throw new IllegalStateException("Unknown expression type");
+      throw new UnsupportedOperationException("Unknown expression type: " + ctx.getText());
     }
   }
 
@@ -26,7 +26,7 @@ public class ExpressionFacroty {
     } else if (ctx.identifier() != null) {
       return new UnresolvedIdentifierExpressionJNode(ctx.identifier().getText());
     } else {
-      throw new IllegalStateException("Unknown primary expression type");
+      throw new UnsupportedOperationException("Unknown primary expression type: " + ctx.getText());
     }
   }
 

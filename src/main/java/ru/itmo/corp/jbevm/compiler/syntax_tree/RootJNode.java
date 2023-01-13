@@ -11,7 +11,7 @@ public class RootJNode extends JNode {
     if (child instanceof ClassJNode) {
       classes.add((ClassJNode) child);
     } else {
-      throw new IllegalArgumentException("Unexpected child type: " + child.getClass());
+      throw new IllegalArgumentException("Unexpected child type: " + child.getClass().getName());
     }
   }
 

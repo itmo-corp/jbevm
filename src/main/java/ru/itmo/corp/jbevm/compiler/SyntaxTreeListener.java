@@ -108,7 +108,7 @@ public class SyntaxTreeListener extends JbevmParserBaseListener {
       if (child instanceof LocalVariableJNode)
         localVariables.add((LocalVariableJNode) child);
       else
-        throw new IllegalArgumentException("LocalVariablesInremideate can only contain LocalVariableJNode");
+        throw new IllegalArgumentException("LocalVariablesInremideate can only contain LocalVariableJNode, but got " + child.getClass().getName());
     }
 
     public List<LocalVariableJNode> getLocalVariables() {

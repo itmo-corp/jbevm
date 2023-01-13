@@ -12,7 +12,7 @@ public class TypeFactory {
     } else if (ctx.VOID() != null) {
       return new VoidJType();
     } else {
-      throw new IllegalStateException("Unknown type");
+      throw new UnsupportedOperationException("Unknown type: " + ctx.getText());
     }
   }
 
@@ -22,7 +22,7 @@ public class TypeFactory {
     } else if (ctx.classOrInterfaceType() != null) {
       return new UnresolvedJType(ctx.classOrInterfaceType().getText());
     } else {
-      throw new IllegalStateException("Unknown type");
+      throw new UnsupportedOperationException("Unknown type: " + ctx.getText());
     }
   }
 
@@ -30,7 +30,7 @@ public class TypeFactory {
     if (ctx.INT() != null) {
       return new IntJType();
     } else {
-      throw new IllegalStateException("Unknown primitive type");
+      throw new UnsupportedOperationException("Unknown primitive type: " + ctx.getText());
     }
   }
 }
