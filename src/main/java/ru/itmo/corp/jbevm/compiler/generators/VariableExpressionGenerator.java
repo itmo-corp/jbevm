@@ -2,22 +2,20 @@ package ru.itmo.corp.jbevm.compiler.generators;
 
 import ru.itmo.corp.jbevm.compiler.data_containers.Variable;
 import ru.itmo.corp.jbevm.compiler.syntax_tree.JNode;
+import ru.itmo.corp.jbevm.compiler.syntax_tree.RecursiveJNodeVisitor;
 import ru.itmo.corp.jbevm.compiler.syntax_tree.expressions.UnresolvedIdentifierExpressionJNode;
 import ru.itmo.corp.jbevm.compiler.syntax_tree.expressions.VariableIdentifierExpressionJNode;
 
-public class VariableExpressionGenerator {
+public class VariableExpressionGenerator extends RecursiveJNodeVisitor {
   public static void generate(JNode node) {
-    for (JNode child : node.getChildren()) {
-      if (child instanceof UnresolvedIdentifierExpressionJNode) {
-        generateVariableExpressions((UnresolvedIdentifierExpressionJNode) child, node);
-      }
-      generate(child);
-    }
+    node.accept(new VariableExpressionGenerator());
   }
-
-  private static void generateVariableExpressions(UnresolvedIdentifierExpressionJNode node, JNode parent) {
+  
+  @Override
+  public void visit(UnresolvedIdentifierExpressionJNode node) {
     String name = node.getName();
-    Variable variable = parent.getScope().getVariableByName(name);
+    JNode parent = node.getParent();
+    Variable variable = node.getScope().getVariableByName(name);
     if (variable == null) {
       throw new RuntimeException("Variable " + name + " is not defined");
     }
