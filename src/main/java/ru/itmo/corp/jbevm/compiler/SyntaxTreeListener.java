@@ -105,7 +105,7 @@ public class SyntaxTreeListener extends JbevmParserBaseListener {
     }
 
     @Override
-    public void addChild(JNode child) {
+    protected void addChildImpl(JNode child) {
       if (child instanceof LocalVariableJNode)
         localVariables.add((LocalVariableJNode) child);
       else
@@ -161,7 +161,7 @@ public class SyntaxTreeListener extends JbevmParserBaseListener {
     private List<JNode> children = new ArrayList<>();
 
     @Override
-    public void addChild(JNode child) {
+    protected void addChildImpl(JNode child) {
         children.add(child);
     }
 

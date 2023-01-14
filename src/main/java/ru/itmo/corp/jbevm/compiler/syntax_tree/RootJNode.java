@@ -7,7 +7,7 @@ public class RootJNode extends JNode {
   private final List<ClassJNode> classes = new ArrayList<>();
   
   @Override
-  public void addChild(JNode child) {
+  protected void addChildImpl(JNode child) {
     if (child instanceof ClassJNode) {
       classes.add((ClassJNode) child);
     } else {

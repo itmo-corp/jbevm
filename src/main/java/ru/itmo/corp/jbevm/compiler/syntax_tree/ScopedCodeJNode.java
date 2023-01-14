@@ -8,7 +8,7 @@ public class ScopedCodeJNode extends StatementJNode {
   private List<StatementJNode> statements = new ArrayList<>();
 
   @Override
-  public void addChild(JNode child) {
+  protected void addChildImpl(JNode child) {
     if (child instanceof LocalVariableJNode) {
       localVariables.add((LocalVariableJNode) child);
     } else if (child instanceof StatementJNode) {

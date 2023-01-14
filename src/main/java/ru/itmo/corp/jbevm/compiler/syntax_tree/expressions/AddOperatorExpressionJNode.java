@@ -11,7 +11,7 @@ public class AddOperatorExpressionJNode extends ExpressionJNode {
   private JNode right;
 
   @Override
-  public void addChild(JNode child) {
+  protected void addChildImpl(JNode child) {
     if (left == null) {
       left = child;
     } else if (right == null) {
@@ -27,7 +27,7 @@ public class AddOperatorExpressionJNode extends ExpressionJNode {
   }
 
   @Override
-  public void replaceChild(JNode oldChild, JNode newChild) {
+  protected void replaceChildImpl(JNode oldChild, JNode newChild) {
     if (left == oldChild) {
       left = newChild;
     } else if (right == oldChild) {

@@ -20,7 +20,7 @@ public class MethodJNode extends NamedJNode implements ScopeItem {
   }
 
   @Override
-  public void addChild(JNode child) {
+  protected void addChildImpl(JNode child) {
     if (child instanceof ScopedCodeJNode) {
       body = (ScopedCodeJNode) child;
     } else if (child instanceof MethodArgumentJNode) {

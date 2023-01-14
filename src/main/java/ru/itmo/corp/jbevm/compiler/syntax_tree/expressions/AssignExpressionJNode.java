@@ -11,7 +11,7 @@ public class AssignExpressionJNode extends ExpressionJNode {
   private ExpressionJNode right;
 
   @Override
-  public void addChild(JNode child) {
+  protected void addChildImpl(JNode child) {
     if (!(child instanceof ExpressionJNode)) {
       throw new IllegalArgumentException(
           "AssignExpressionJNode can have only ExpressionJNode children, but got " + child.getClass().getName());
@@ -41,7 +41,7 @@ public class AssignExpressionJNode extends ExpressionJNode {
   }
 
   @Override
-  public void replaceChild(JNode oldChild, JNode newChild) {
+  protected void replaceChildImpl(JNode oldChild, JNode newChild) {
     if (left == oldChild) {
       left = (VariableExpressionJNode) newChild;
     } else if (right == oldChild) {

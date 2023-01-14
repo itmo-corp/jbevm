@@ -12,7 +12,7 @@ public class LocalVariableJNode extends VariableJNode implements ScopeItem {
   private @Nullable ExpressionJNode value;
 
   @Override
-  public void addChild(JNode child) {
+  protected void addChildImpl(JNode child) {
     if (child instanceof ExpressionJNode) {
       value = (ExpressionJNode) child;
     } else {
@@ -26,7 +26,7 @@ public class LocalVariableJNode extends VariableJNode implements ScopeItem {
   }
 
   @Override
-  public void replaceChild(JNode oldChild, JNode newChild) {
+  protected void replaceChildImpl(JNode oldChild, JNode newChild) {
     if (value == oldChild) {
       value = (ExpressionJNode) newChild;
     } else {

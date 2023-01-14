@@ -14,7 +14,7 @@ public class ClassJNode extends NamedJNode implements ScopeItemsContainer {
   }
 
   @Override
-  public void addChild(JNode child) {
+  protected void addChildImpl(JNode child) {
     if (child instanceof MethodJNode) {
       methods.add((MethodJNode) child);
     } else {
