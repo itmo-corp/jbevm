@@ -2,7 +2,7 @@ package ru.itmo.corp.jbevm.compiler.syntax_tree;
 
 public abstract class RecursiveJNodeVisitor extends JNodeVisitor {
   @Override
-  public void unknownNode(JNode node) {
+  protected void unknownNode(JNode node) {
     visitChildren(node);
   }
 

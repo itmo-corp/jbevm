@@ -23,7 +23,7 @@ public class VariableExpressionGenerator {
     }
     VariableIdentifierExpressionJNode newNode = new VariableIdentifierExpressionJNode(variable);
     parent.replaceChild(node, newNode);
-    ScopesGenerator.regenerateOne(newNode, parent.getScope());
-    ScopesGenerator.regenerateOne(parent, parent.getScope().getParent());
+    ScopesGenerator.regenerateOne(newNode);
+    ScopesGenerator.regenerateOne(parent);
   }
 }

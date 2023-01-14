@@ -28,7 +28,7 @@ public class JbevmCompiler {
 
     RootJNode root = syntaxTreeListener.getRoot();
 
-    ScopesGenerator.generate(root, null);
+    ScopesGenerator.generate(root);
 
     VariableExpressionGenerator.generate(root);
 
