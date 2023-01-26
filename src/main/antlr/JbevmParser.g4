@@ -141,7 +141,7 @@ blockStatement
     ;
 
 localVariableDeclaration
-    : (typeType variableDeclarators '=' expression)
+    : typeType variableDeclarators
     ;
 
 identifier
